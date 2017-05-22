@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body>
+<style>
+    a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+    body{
+        font-family: 'Roboto', sans-serif;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border-bottom: 1px solid black;
+    }
+    .header{
+        position:relative;
+        padding: 30px 0 30px;
+    }
+    .header h1{
+        font-size: 25px;
+        font-weight: 700;
+
+    }
+    .header .bag{
+        right: 0;
+        position: absolute;
+    }
+
+    .container {
+        min-width:360px;
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        height: auto;
+        overflow: auto;
+        background-color: #f7f7f7;
+    }
+    header > .container{
+        background-color: #fff;
+    }
+    header > div > div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .bag {
+        justify-content: end;
+        position:relative;
+    }
+    .bag > div {
+        position:absolute;
+        right:0;
+    }
+    nav.desktop{
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 35%;
+        font-weight: 700;
+    }
+    nav.desktop > a{
+        padding: 0 0 30px 0
+    }
+    .mobile {
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 10px;
+        left:0;
+    }
+    .mobile div {
+        display: none;
+        margin-top:13px;
+    }
+    .mobile span{
+        color: #000;
+        font-weight: 700;
+        font-size: 12px;
+    }
+    .mobile button {
+        border: 0;
+        background: rgba(255,255,255) url("icon-hamburger.svg") center no-repeat;
+        color:transparent;
+    }
+    .mobile a {
+        display: block;
+        background: #eee;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #ddd;
+        text-decoration: none;
+        color: #000;
+        font-weight: 700;
+    }
+    span,a {
+        text-align: left;
+        color: #555;
+        text-decoration: none;
+    }
+    .subtitle{
+        font-weight: 700;
+        padding: 20px 10px 30px;
+        font-size: 14px;
+    }
+    label{
+        padding-left:10px;
+        font-weight: 700;
+        font-size: 12px;
+    }
+    .center{
+        text-align: center;;
+    }
+    .row{
+        display:flex;
+        justify-content: space-around;
+
+    }
+    .section{
+        width: 50%;
+        max-width: 300px;
+    }
+
+    .section:nth-child(even) {
+        order: 1;
+    }
+
+    .section:nth-child(odd) {
+        order: 2;
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 14px 12px;
+        margin: 8px 0 12px;
+        box-sizing: border-box;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+    }
+    input[type=text]:focus {
+        border: 1px solid #5B1A8E;
+    }
+    input[type=submit]{
+        background-color: #5B1A8E;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        border-radius: 4px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width:100%;
+    }
+    select {
+        width: 100%;
+        padding: 16px 20px;
+        border: 1px solid #bbb;
+        margin: 8px 0 12px;
+        border-radius: 4px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("icon-expand.svg");
+        background-position: right center;
+        background-repeat: no-repeat;
+    }
+    select:focus{
+        background-image: url("icon-collapse.svg");
+    }
+    select::after{
+        content: 'test';
+    }
+    select::-ms-expand {
+        display: none;
+    }
+    select:focus{
+        border: 1px solid #5B1A8E;
+    }
+    label.required:after{
+        position: absolute;
+        content: '';
+        background-color:#FF0000;
+        margin: 2px 2px 0;
+        border-radius: 50%;
+        width: 6px;
+        height: 6px;
+        line-height:25px;
+        pointer-events: none;
+    }
+
+    .cart img {
+        width: 100%;
+    }
+
+    .cart .image {
+        max-width: 100px;
+        float: left;
+        width: 30%
+    }
+    .name{
+        padding: 0 0 5px;
+        font-weight: 700;
+        color: #bbb;
+    }
+    .counter{
+        display:flex;
+        width:50%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .counter .image {
+        max-width: 25px;
+    }
+
+    .specs {
+        width: 70%;
+        float: right;
+        margin-left:20px;
+    }
+    .item{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin:10px 0;
+    }
+    .summary{
+        line-height: 30px;
+    }
+    @media (max-width: 767px) {
+        .mobile {
+            display: block;
+        }
+        nav.desktop {
+            display: none;
+        }
+        .header h1{
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 30px;
+        }
+        .row{
+            justify-content:center;
+            flex-wrap: wrap;
+        }
+        .section{
+            max-width:unset;
+            width:100%;
+        }
+        .container{
+            overflow: unset;
+        }
+        .section{
+            order: 2;
+        }
+        .section:first-child{
+            order: 1;
+        }
+        .section{
+            padding:0 10px;
+        }
+        .header{
+            padding: 5px;
+            width:unset;
+        }
+
+    }
+</style>
+<div id="root">
+<header>
+
+    <div class="container">
+        <div class="header">
+            <nav class="mobile">
+                <button onclick='var mm = document.getElementById("mobile-menu"); document.getElementById("mobile-menu").style.display =  document.getElementById("mobile-menu").style.display == "block" ? "none" : "block";'>toggle</button><span class="bold">Menu</span>
+                <div id="mobile-menu">
+                    <a class="bold" href="#">Women</a>
+                    <a class="bold" href="#">Men</a>
+                    <a class="bold" href="#">Accesories</a>
+                    <a class="bold" href="#">Shoes</a>
+                </div>
+            </nav>
+            <div class="bag"><img src="icon-bag.svg"><span style="vertical-align: super;">2</span></div>
+            <h1>ACME STORE</h1>
+        </div>
+        <nav class="desktop">
+            <a class="bold" href="#">Women</a>
+            <a class="bold" href="#">Men</a>
+            <a class="bold" href="#">Accesories</a>
+            <a class="bold" href="#">Shoes</a>
+        </nav>
+
+
+    </div>
+</header>
+<div class="container">
+    <div class="subtitle center">
+        <span>CHECKOUT</span>
+    </div>
+    <div class="row">
+    <div class="section">
+        <div class="subtitle">
+            <span>YOUR ORDER</span>
+        </div>
+        <div class="cart">
+            <div class="item">
+                <div class="image"><img src="pic-item.png"></div>
+                <div class="specs">
+                    <div class="name"><span>Acme product name</span></div>
+                    <div class="counter">
+                        <div class="image"><img src="icon-minus.svg"></div>
+                        <span>1</span>
+                        <div class="image"><img src="icon-plus.svg"></div>
+                    </div>
+                    <div class="item">
+                        <div><span>Price</span></div>
+                        <div><span>$300,00</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="image"><img src="pic-item.png"></div>
+                <div class="specs">
+                    <div class="name"><span>Acme product name</span></div>
+                    <div class="counter">
+                        <div class="image"><img src="icon-minus.svg"></div>
+                        <span>1</span>
+                        <div class="image"><img src="icon-plus.svg"></div>
+                    </div>
+                    <div class="item">
+                        <div><span>Price</span></div>
+                        <div><span>$300,00</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="subtitle">
+            <span>ORDER SUMMARY</span>
+        </div>
+        <div class="summary">
+            <div class="item">
+                <div><span>Subtotal</span></div>
+                <div><span>$300,00</span></div>
+            </div>
+            <div class="item">
+                <div><span>Shipping</span></div>
+                <div><span>$20</span></div>
+            </div>
+            <hr>
+            <div class="item">
+                <div><span>Total</span></div>
+                <div><span>$320</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="subtitle">
+            <span>DELIVERY ADDRESS</span>
+        </div>
+        <form>
+            <label class="required" for="first-name">FIRST NAME</label>
+            <input class="required" type="text" id="first-name" required>
+
+            <label class="required" for="last-name">LAST NAME</label>
+            <input class="required" type="text" id="last-name" required>
+
+            <label class="required" for="e-mail">E-MAIL</label>
+            <input class="required" type="text" id="e-mail" required type="email">
+
+            <label for="phone">PHONE</label>
+            <input type="text" id="phone" required >
+
+            <label class="required" for="address">ADDRESS</label>
+            <input class="required" type="text" id="address" required >
+
+            <label for="address-cont">ADDRESS CONT.</label>
+            <input type="text" id="address-cont" required pattern="">
+
+            <label class="required" for="zip-code">ZIP CODE</label>
+            <input class="required" type="text" id="zip-code" required >
+
+            <label class="required" for="city">CITY</label>
+            <input class="required" type="text" id="city" required >
+
+            <label class="required" for="state">STATE</label>
+            <input class="required" type="text" id="state" required >
+
+            <label class="required" for="country">COUNTRY</label>
+            <select class="required" id="country" name="country">
+                <option value="usa">USA</option>
+                <option value="au">Australia</option>
+                <option value="ca">Canada</option>
+            </select>
+
+            <div class="subtitle">
+                <span>PAYMENT</span>
+            </div>
+
+            <label class="required" for="card-number">CARD NUMBER</label>
+            <input class="required" type="text" id="card-number" required >
+
+            <label class="required" for="card-holder">CARD HOLDER</label>
+            <input class="required" type="text" id="card-holder" required >
+            <label class="required" for="cvc">CVC</label>
+            <input class="required" type="text" id="cvc" required >
+
+            <input type="submit" value="BUY">
+
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
